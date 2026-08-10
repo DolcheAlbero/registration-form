@@ -47,7 +47,7 @@ function isPasswordValid(value) {
 
 // --- ВАЛИДАЦИЯ СОВПАДЕНИЯ ПАРОЛЕЙ ---
 function doPasswordsMatch(password, confirm) {
-  return password === confirm && confirm.length > 0;
+  return password.toLowerCase() === confirm.toLowerCase() && confirm.length > 0;
 }
 
 // --- ОБНОВЛЕНИЕ ИНДИКАТОРА СИЛЫ ПАРОЛЯ ---
