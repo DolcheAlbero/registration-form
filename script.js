@@ -20,7 +20,7 @@ const strengthLabel = document.getElementById('strengthLabel');
 // Правильный номер: +7 или 8, затем ровно 10 цифр (итого 11 цифр с кодом).
 function validatePhone(value) {
   const digitsOnly = value.replace(/\D/g, '');
-  const isValidLength = digitsOnly.length === 11;
+  const isValidLength = digitsOnly.length >= 9;
   const startsCorrectly = digitsOnly.startsWith('7') || digitsOnly.startsWith('8');
   return isValidLength && startsCorrectly;
 }
