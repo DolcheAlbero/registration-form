@@ -42,7 +42,7 @@ function getPasswordStrength(value) {
 }
 
 function isPasswordValid(value) {
-  return getPasswordStrength(value) >= 2 && value.length >= 8;
+  return value.length >= 8;
 }
 
 // --- ВАЛИДАЦИЯ СОВПАДЕНИЯ ПАРОЛЕЙ ---
