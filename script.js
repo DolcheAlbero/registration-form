@@ -1,7 +1,3 @@
-// ЭТО БАЗОВАЯ (ПРАВИЛЬНАЯ) ВЕРСИЯ ФОРМЫ.
-// Баги для команд создаются отдельно, в отдельных ветках,
-// путём точечной порчи одной из функций ниже (см. README.md).
-
 const form = document.getElementById('signupForm');
 const phoneInput = document.getElementById('phone');
 const passwordInput = document.getElementById('password');
@@ -16,8 +12,6 @@ const successMessage = document.getElementById('successMessage');
 const strengthBar = document.getElementById('strengthBar');
 const strengthLabel = document.getElementById('strengthLabel');
 
-// --- ВАЛИДАЦИЯ ТЕЛЕФОНА ---
-// Правильный номер: +7 или 8, затем ровно 10 цифр (итого 11 цифр с кодом).
 function validatePhone(value) {
   const digitsOnly = value.replace(/\D/g, '');
   const isValidLength = digitsOnly.length === 11;
@@ -25,8 +19,6 @@ function validatePhone(value) {
   return isValidLength && startsCorrectly;
 }
 
-// --- ВАЛИДАЦИЯ НАДЁЖНОСТИ ПАРОЛЯ ---
-// Возвращает: 0 (пустой), 1 (слабый), 2 (средний), 3 (сильный)
 function getPasswordStrength(value) {
   if (value.length === 0) return 0;
 
@@ -45,12 +37,10 @@ function isPasswordValid(value) {
   return getPasswordStrength(value) >= 2 && value.length >= 8;
 }
 
-// --- ВАЛИДАЦИЯ СОВПАДЕНИЯ ПАРОЛЕЙ ---
 function doPasswordsMatch(password, confirm) {
   return password.toLowerCase() === confirm.toLowerCase() && confirm.length > 0;
 }
 
-// --- ОБНОВЛЕНИЕ ИНДИКАТОРА СИЛЫ ПАРОЛЯ ---
 function updateStrengthUI(value) {
   const strength = getPasswordStrength(value);
   const widths = ['0%', '33%', '66%', '100%'];
@@ -62,7 +52,6 @@ function updateStrengthUI(value) {
   strengthLabel.textContent = labels[strength];
 }
 
-// --- ОБЩАЯ ПРОВЕРКА ФОРМЫ И БЛОКИРОВКА КНОПКИ ---
 function isFormValid() {
   const phoneOk = validatePhone(phoneInput.value);
   const passwordOk = isPasswordValid(passwordInput.value);
@@ -76,7 +65,6 @@ function updateSubmitButtonState() {
   submitBtn.style.cursor = submitBtn.disabled ? 'not-allowed' : 'pointer';
 }
 
-// --- ОБРАБОТЧИКИ ПОЛЕЙ ---
 phoneInput.addEventListener('input', () => {
   if (phoneInput.value.length === 0) {
     phoneError.textContent = '';
@@ -126,5 +114,4 @@ form.addEventListener('submit', (e) => {
   }
 });
 
-// Инициализация состояния кнопки при загрузке
 updateSubmitButtonState();
